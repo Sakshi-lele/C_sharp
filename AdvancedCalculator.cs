@@ -22,7 +22,7 @@ namespace AdvancedCalculator
 
         public Calculator()
         {
-            // Initialize the operations dictionaries
+
             _basicOperations = new Dictionary<string, Func<double, double, double>>
             {
                 { "+", (a, b) => a + b },
@@ -72,7 +72,7 @@ namespace AdvancedCalculator
                 Console.Clear();
             }
 
-            Console.WriteLine("Thank you for using the Advanced Calculator. Goodbye!");
+            Console.WriteLine("Thank you for using the Advanced Calculator. Bubyee!");
         }
 
         private void DisplayWelcomeMessage()
@@ -110,7 +110,7 @@ namespace AdvancedCalculator
             if (string.IsNullOrWhiteSpace(input))
                 return;
 
-            // Process commands
+          
             switch (input)
             {
                 case "exit":
@@ -157,14 +157,12 @@ namespace AdvancedCalculator
                     return;
             }
 
-            // Try to process as a scientific operation
             foreach (var op in _scientificOperations.Keys)
             {
                 if (input.StartsWith(op + " "))
                 {
                     string numberStr = input.Substring(op.Length).Trim();
                     
-                    // Check if we're using memory
                     if (numberStr == "m")
                     {
                         numberStr = _memory.ToString();
@@ -184,7 +182,6 @@ namespace AdvancedCalculator
                 }
             }
 
-            // Try to process as a basic operation
             string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             
             if (parts.Length == 3)
@@ -193,7 +190,6 @@ namespace AdvancedCalculator
                 string op = parts[1];
                 string rightStr = parts[2];
                 
-                // Check if we're using memory
                 if (leftStr == "m")
                 {
                     leftStr = _memory.ToString();
@@ -225,7 +221,7 @@ namespace AdvancedCalculator
                 }
             }
 
-            // If we get here, the input wasn't recognized
+    
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Invalid input. Try again or type 'help' for guidance.");
             Console.ResetColor();

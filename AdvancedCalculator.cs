@@ -182,7 +182,7 @@ namespace AdvancedCalculator
                 }
             }
 
-            string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             
             if (parts.Length == 3)
             {

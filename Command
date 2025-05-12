@@ -1,0 +1,57 @@
+using System;
+
+namespace DesignPatternsDemo
+{
+    
+    public interface ICommand
+    {
+        void Execute();
+    }
+
+    public class Light
+    {
+        public void TurnOn()
+        {
+            Console.WriteLine("Light On");
+        }
+    }
+
+
+    public class LightOnCommand : ICommand
+    {
+        private Light light;
+
+        public LightOnCommand(Light l)
+        {
+            light = l;
+        }
+
+        public void Execute()
+        {
+            light.TurnOn();
+        }
+    }
+
+    
+    public class Remote
+    {
+        public void Submit(ICommand command)
+        {
+            command.Execute();
+        }
+    }
+
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var light = new Light();
+            var command = new LightOnCommand(light);
+            var remote = new Remote();
+            remote.Submit(command);
+
+            
+        }
+    }
+}

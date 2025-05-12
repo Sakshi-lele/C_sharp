@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+
+namespace DesignPatternsDemo
+{
+  
+    public interface IObserver
+    {
+        void Update(string message);
+    }
+
+    public class User : IObserver
+    {
+        private string name;
+
+        public User(string name)
+        {
+            this.name = name;
+        }
+
+        public void Update(string message)
+        {
+            Console.WriteLine($"{name} received: {message}");
+        }
+    }
+
+ 
+    public class NotificationService
+    {
+        private List<IObserver> observers = new List<IObserver>();
+
+        public void Subscribe(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Unsubscribe(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void Notify(string message)
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update(message);
+            }
+        }
+    }
+
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var user1 = new User("Sakshi");
+            var user2 = new User("Alisha");
+
+            var service = new NotificationService();
+            service.Subscribe(user1);
+            service.Subscribe(user2);
+
+            service.Notify("New message arrived!");
+        }
+    }
+}

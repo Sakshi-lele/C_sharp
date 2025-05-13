@@ -1,0 +1,40 @@
+using System;
+
+interface IShape
+{
+    void Draw();
+}
+
+class Circle : IShape
+{
+    public void Draw()
+    {
+        Console.WriteLine("Drawing Circle");
+    }
+}
+
+class Colored
+{
+    public void FillColor()
+    {
+        Console.WriteLine("Filling with Color");
+    }
+}
+
+class ColoredCircle : Colored, IShape
+{
+    public void Draw()
+    {
+        Console.WriteLine("Drawing colored Circle");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        ColoredCircle cc = new ColoredCircle();
+        cc.Draw();
+        cc.FillColor();
+    }
+}
